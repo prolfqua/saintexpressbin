@@ -6,7 +6,17 @@ runner for prepared SAINT input data.
 This package owns native execution details: resolving the platform-specific
 binary, writing SAINT input files, running the native executable or Docker,
 reading `list.txt`, and cleaning up generated files. It does not prepare
-prolfqua data objects; that integration belongs in `prolfquasaint`.
+prolfqua data objects; that integration belongs in
+[`prolfquasaint`](https://github.com/prolfqua/prolfquasaint). For the pure-R
+implementation of the same scoring, see
+[`saintexpress`](https://github.com/prolfqua/saintexpress).
+
+## Installation
+
+```r
+# install.packages("remotes")
+remotes::install_github("prolfqua/saintexpressbin")
+```
 
 ## Binaries
 
@@ -86,6 +96,21 @@ result <- saintexpressbin::saintexpress_run(
 On macOS, Docker is used automatically when no native binary is available. Set
 `use_docker = TRUE` to force Docker, or `use_docker = FALSE` to require a native
 binary.
+
+## Vignette
+
+A worked example using the native binaries on simulated AP-MS data is included
+as a package vignette:
+
+```r
+vignette("saintexpressbin", package = "saintexpressbin")
+```
+
+It runs `SAINTexpress-spc` and `SAINTexpress-int` on a 6-prey/4-bait synthetic
+experiment with known true interactors, and mirrors the structure of the
+companion [`saintexpress`](https://github.com/prolfqua/saintexpress) vignette so
+the native and pure-R engines can be compared side by side. Native-run chunks
+are skipped automatically when no platform binary is resolvable.
 
 ## License Note
 
