@@ -1,0 +1,11 @@
+test_that(".write_saint_inputs writes three TSV files", {
+  inter <- data.frame(IP = c("A","B"), bait = c("x","x"), prey = c("p1","p2"), n = c(1L, 2L))
+  prey <- data.frame(prey = c("p1","p2"), len = c(100L, 200L), gene = c("g1","g2"))
+  bait <- data.frame(IP = c("A","B"), bait = c("x","x"), cort = c("T","T"))
+  si <- list(inter = inter, prey = prey, bait = bait)
+  td <- withr::local_tempdir()
+  paths <- saintexpressbin:::.write_saint_inputs(si, td)
+  expect_length(paths, 3)
+  expect_true(all(file.exists(paths)))
+  expect_equal(basename(paths), c("inter.txt", "prey.txt", "bait.txt"))
+})

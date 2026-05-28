@@ -1,0 +1,18 @@
+Package: saintexpressbin
+Title: SAINTexpress Native Binaries and Runner
+Version: 0.0.0.9000
+Authors@R: 
+    person("Witold", "Wolski", , "wew@fgcz.ethz.ch", role = c("aut", "cre"))
+Description: Ships SAINTexpress native executables and runs them (or a
+    Docker image on macOS) on prepared SAINT input data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Suggests: 
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
+Imports: 
+    readr,
+    utils
