@@ -33,6 +33,15 @@ inst/bin/Windows64/SAINTexpress-int.exe
 
 Unix binaries must be executable in the package source and after installation.
 
+## Upstream Source
+
+The bundled executables are derived from the upstream SAINTexpress distribution
+from the SAINT AP-MS project:
+
+- SAINT/SAINTexpress homepage: <https://saint-apms.sourceforge.net/Main.html>
+- SourceForge files page: <https://sourceforge.net/projects/saint-apms/files/>
+- Source archive: `SAINTexpress_v3.6.3__2018-03-09.tar.gz`
+
 ## Availability
 
 Check whether a native executable, or the macOS Docker fallback, is available:
@@ -116,3 +125,20 @@ are skipped automatically when no platform binary is resolvable.
 
 Before public redistribution, verify that the shipped SAINTexpress binaries can
 be distributed under the intended hosting and package release terms.
+
+## References
+
+SAINTexpress and the SAINT model are described in the original publications:
+
+- Teo G, Liu G, Zhang J, Nesvizhskii AI, Gingras AC, Choi H (2014).
+  SAINTexpress: improvements and additional features in Significance Analysis
+  of INTeractome software. *Journal of Proteomics* 100:37-43.
+  <https://doi.org/10.1016/j.jprot.2013.10.023>
+- Choi H, Glatter T, Gstaiger M, Nesvizhskii AI (2012). SAINT-MS1:
+  protein-protein interaction scoring using label-free intensity data in
+  affinity purification-mass spectrometry experiments. *Journal of Proteome
+  Research* 11:2619-2624. <https://doi.org/10.1021/pr201185r>
+- Choi H, Larsen B, Lin ZY, Breitkreutz A, Mellacheruvu D, Fermin D, Qin ZS,
+  Tyers M, Gingras AC, Nesvizhskii AI (2011). SAINT: probabilistic scoring of
+  affinity purification-mass spectrometry data. *Nature Methods* 8:70-73.
+  <https://doi.org/10.1038/nmeth.1541>
