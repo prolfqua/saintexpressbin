@@ -11,6 +11,9 @@ prolfqua data objects; that integration belongs in
 implementation of the same scoring, see
 [`saintexpress`](https://github.com/prolfqua/saintexpress).
 
+Package documentation is available at
+<https://prolfqua.github.io/saintexpressbin/>.
+
 ## Installation
 
 ```r
