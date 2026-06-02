@@ -71,20 +71,20 @@ if (nzchar(saintexpress_executable("spc"))) {
   dir.create(workdir)
   saintexpress_run(si, type = "spc", workdir = workdir, use_docker = FALSE)
 }
-#> Input files are: /tmp/RtmpweRF05/saintexpressbin-1d704645050e/inter.txt, /tmp/RtmpweRF05/saintexpressbin-1d704645050e/prey.txt, /tmp/RtmpweRF05/saintexpressbin-1d704645050e/bait.txt
-#> Interaction file: "/tmp/RtmpweRF05/saintexpressbin-1d704645050e/inter.txt"
-#> Prey file: "/tmp/RtmpweRF05/saintexpressbin-1d704645050e/prey.txt"
-#> Bait file: "/tmp/RtmpweRF05/saintexpressbin-1d704645050e/bait.txt"
+#> Input files are: /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/inter.txt, /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/prey.txt, /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/bait.txt
+#> Interaction file: "/tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/inter.txt"
+#> Prey file: "/tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/prey.txt"
+#> Bait file: "/tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/bait.txt"
 #> GO file: ""
-#> Parsing prey file /tmp/RtmpweRF05/saintexpressbin-1d704645050e/prey.txt ...done.
-#> Parsing prey file /tmp/RtmpweRF05/saintexpressbin-1d704645050e/bait.txt ...done.
-#> Parsing interaction file /tmp/RtmpweRF05/saintexpressbin-1d704645050e/inter.txt ...done.
+#> Parsing prey file /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/prey.txt ...done.
+#> Parsing prey file /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/bait.txt ...done.
+#> Parsing interaction file /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/inter.txt ...done.
 #> Setting matrix indices for each interaction...done.
 #> Creating matrix...done.
 #> Creating a list of unique interactions...done.
 #> $listFile
-#>                                                listFile
-#> 1 /tmp/RtmpweRF05/saintexpressbin-1d704645050e/list.txt
+#>                                               listFile
+#> 1 /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/list.txt
 #> 
 #> $list
 #>    Bait  Prey PreyGene  Spec SpecSum AvgSpec NumReplicates ctrlCounts AvgP MaxP
@@ -95,17 +95,17 @@ if (nzchar(saintexpress_executable("spc"))) {
 #> 2        0        0          0        -0.19          2    0         NA
 #> 
 #> $out
-#>                                                                                                                                                                                      out
-#> 1  Input files are: /tmp/RtmpweRF05/saintexpressbin-1d704645050e/inter.txt, /tmp/RtmpweRF05/saintexpressbin-1d704645050e/prey.txt, /tmp/RtmpweRF05/saintexpressbin-1d704645050e/bait.txt
-#> 2                                                                                                             Interaction file: "/tmp/RtmpweRF05/saintexpressbin-1d704645050e/inter.txt"
-#> 3                                                                                                                     Prey file: "/tmp/RtmpweRF05/saintexpressbin-1d704645050e/prey.txt"
-#> 4                                                                                                                     Bait file: "/tmp/RtmpweRF05/saintexpressbin-1d704645050e/bait.txt"
-#> 5                                                                                                                                                                            GO file: ""
-#> 6                                                                                                       Parsing prey file /tmp/RtmpweRF05/saintexpressbin-1d704645050e/prey.txt ...done.
-#> 7                                                                                                       Parsing prey file /tmp/RtmpweRF05/saintexpressbin-1d704645050e/bait.txt ...done.
-#> 8                                                                                               Parsing interaction file /tmp/RtmpweRF05/saintexpressbin-1d704645050e/inter.txt ...done.
-#> 9                                                                                                                                    Setting matrix indices for each interaction...done.
-#> 10                                                                                                                                                               Creating matrix...done.
-#> 11                                                                                                                                        Creating a list of unique interactions...done.
+#>                                                                                                                                                                                   out
+#> 1  Input files are: /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/inter.txt, /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/prey.txt, /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/bait.txt
+#> 2                                                                                                           Interaction file: "/tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/inter.txt"
+#> 3                                                                                                                   Prey file: "/tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/prey.txt"
+#> 4                                                                                                                   Bait file: "/tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/bait.txt"
+#> 5                                                                                                                                                                         GO file: ""
+#> 6                                                                                                     Parsing prey file /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/prey.txt ...done.
+#> 7                                                                                                     Parsing prey file /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/bait.txt ...done.
+#> 8                                                                                             Parsing interaction file /tmp/RtmpAg6rOU/saintexpressbin-1c749daaf12/inter.txt ...done.
+#> 9                                                                                                                                 Setting matrix indices for each interaction...done.
+#> 10                                                                                                                                                            Creating matrix...done.
+#> 11                                                                                                                                     Creating a list of unique interactions...done.
 #> 
 ```

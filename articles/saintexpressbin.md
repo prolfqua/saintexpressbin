@@ -80,14 +80,14 @@ res_spc <- saintexpressbin::saintexpress_run(
   cleanup = TRUE,
   use_docker = FALSE
 )
-#> Input files are: /tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/inter.txt, /tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/prey.txt, /tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/bait.txt
-#> Interaction file: "/tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/inter.txt"
-#> Prey file: "/tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/prey.txt"
-#> Bait file: "/tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/bait.txt"
+#> Input files are: /tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/inter.txt, /tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/prey.txt, /tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/bait.txt
+#> Interaction file: "/tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/inter.txt"
+#> Prey file: "/tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/prey.txt"
+#> Bait file: "/tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/bait.txt"
 #> GO file: ""
-#> Parsing prey file /tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/prey.txt ...done.
-#> Parsing prey file /tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/bait.txt ...done.
-#> Parsing interaction file /tmp/Rtmp4kJROS/saintexpressbin-spc-1e732871512f/inter.txt ...done.
+#> Parsing prey file /tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/prey.txt ...done.
+#> Parsing prey file /tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/bait.txt ...done.
+#> Parsing interaction file /tmp/RtmpnA1WoS/saintexpressbin-spc-1d6adce171f/inter.txt ...done.
 #> Setting matrix indices for each interaction...done.
 #> Creating matrix...done.
 #> Creating a list of unique interactions...done.
@@ -172,14 +172,14 @@ res_int <- saintexpressbin::saintexpress_run(
   cleanup = TRUE,
   use_docker = FALSE
 )
-#> Input files are: /tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/inter.txt, /tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/prey.txt, /tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/bait.txt
-#> Interaction file: "/tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/inter.txt"
-#> Prey file: "/tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/prey.txt"
-#> Bait file: "/tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/bait.txt"
+#> Input files are: /tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/inter.txt, /tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/prey.txt, /tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/bait.txt
+#> Interaction file: "/tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/inter.txt"
+#> Prey file: "/tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/prey.txt"
+#> Bait file: "/tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/bait.txt"
 #> GO file: ""
-#> Parsing prey file /tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/prey.txt ...done.
-#> Parsing prey file /tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/bait.txt ...done.
-#> Parsing interaction file /tmp/Rtmp4kJROS/saintexpressbin-int-1e7316dbbac/inter.txt ...done.
+#> Parsing prey file /tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/prey.txt ...done.
+#> Parsing prey file /tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/bait.txt ...done.
+#> Parsing interaction file /tmp/RtmpnA1WoS/saintexpressbin-int-1d6a287718ed/inter.txt ...done.
 #> Setting matrix indices for each interaction...done.
 #> Creating matrix...done.
 #> Creating a list of unique interactions...done.

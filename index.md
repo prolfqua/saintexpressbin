@@ -11,6 +11,9 @@ belongs in [`prolfquasaint`](https://github.com/prolfqua/prolfquasaint).
 For the pure-R implementation of the same scoring, see
 [`saintexpress`](https://github.com/prolfqua/saintexpress).
 
+Package documentation is available at
+<https://prolfqua.github.io/saintexpressbin/>.
+
 ## Installation
 
 ``` r
