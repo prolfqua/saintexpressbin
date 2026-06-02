@@ -9,7 +9,14 @@ saintexpress_available(type = c("spc", "int"))
 \arguments{
 \item{type}{Either \code{"spc"} or \code{"int"}.}
 }
+\value{
+\code{TRUE} if SAINTexpress can run for \code{type} on this machine, otherwise
+\code{FALSE}.
+}
 \description{
 Returns \code{TRUE} if a native binary for the current platform is shipped, or if
 Docker is available on macOS (the Docker image is built on first use).
+}
+\examples{
+saintexpress_available("spc")
 }

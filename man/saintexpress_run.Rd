@@ -34,3 +34,28 @@ Writes \code{inter.txt}, \code{prey.txt}, \code{bait.txt} into \code{workdir}, t
 bundled native binary, or Docker on macOS when no native binary is available
 (or when \code{use_docker = TRUE}).
 }
+\examples{
+si <- list(
+  inter = data.frame(
+    ipId = c("IP1", "IP1", "IP2", "IP2", "IP3", "IP4"),
+    baitId = c("BaitA", "BaitA", "BaitA", "BaitA", "Ctrl", "Ctrl"),
+    preyId = c("Prey1", "Prey2", "Prey1", "Prey2", "Prey1", "Prey2"),
+    quant = c(20, 1, 18, 1, 1, 1)
+  ),
+  prey = data.frame(
+    preyId = c("Prey1", "Prey2"),
+    preyLength = c(500, 500),
+    preyGeneId = c("Gene1", "Gene2")
+  ),
+  bait = data.frame(
+    ipId = c("IP1", "IP2", "IP3", "IP4"),
+    baitId = c("BaitA", "BaitA", "Ctrl", "Ctrl"),
+    CorT = c("T", "T", "C", "C")
+  )
+)
+if (nzchar(saintexpress_executable("spc"))) {
+  workdir <- tempfile("saintexpressbin-")
+  dir.create(workdir)
+  saintexpress_run(si, type = "spc", workdir = workdir, use_docker = FALSE)
+}
+}

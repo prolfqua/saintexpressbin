@@ -1,17 +1,25 @@
 Package: saintexpressbin
 Title: SAINTexpress Native Binaries and Runner
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
-    person("Witold", "Wolski", , "wew@fgcz.ethz.ch", role = c("aut", "cre"))
+    person("Witold", "Wolski", , "wew@fgcz.ethz.ch",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0000-0002-6468-120X"))
 Description: Ships SAINTexpress native executables and runs them (or a
     Docker image on macOS) on prepared SAINT input data.
 License: MIT + file LICENSE
+URL: https://prolfqua.github.io/saintexpressbin/, https://github.com/prolfqua/saintexpressbin
+BugReports: https://github.com/prolfqua/saintexpressbin/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Suggests: 
+    devtools,
     knitr,
+    pkgdown,
+    rcmdcheck,
     rmarkdown,
+    roxygen2,
     testthat (>= 3.0.0),
     withr
 Config/testthat/edition: 3
@@ -19,3 +27,4 @@ Imports:
     readr,
     utils
 VignetteBuilder: knitr
+biocViews: MassSpectrometry, Proteomics, Software

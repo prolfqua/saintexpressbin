@@ -1,0 +1,17 @@
+url: https://prolfqua.github.io/saintexpressbin/
+
+template:
+  bootstrap: 5
+
+development:
+  mode: auto
+
+navbar:
+  structure:
+    left: [intro, reference, articles]
+    right: [search, github]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/prolfqua/saintexpressbin
+      aria-label: GitHub repository

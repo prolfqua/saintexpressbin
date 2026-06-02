@@ -13,23 +13,48 @@
   oldwd <- getwd()
   on.exit(setwd(oldwd), add = TRUE)
   setwd(workdir)
-  args <- list(command = exe, args = paths,
-               stdout = TRUE, stderr = TRUE, wait = TRUE)
+  args <- list(
+    command = exe,
+    args = paths,
+    stdout = TRUE,
+    stderr = TRUE,
+    wait = TRUE
+  )
   if (identical(sysname, "Windows")) {
     args$minimized <- TRUE
   }
   do.call(system2, args)
 }
 
-.run_docker <- function(binary_name, paths, workdir, image_name = "saintexpress:latest") {
+.run_docker <- function(
+  binary_name,
+  paths,
+  workdir,
+  image_name = "saintexpress:latest"
+) {
   ensure_saintexpress_docker_image(image_name)
   container_dir <- "/data"
   container_paths <- file.path(container_dir, basename(paths))
-  docker_args <- c("run", "--rm", "--platform", "linux/amd64",
-                   "-v", paste0(workdir, ":", container_dir),
-                   "-w", container_dir,
-                   image_name, binary_name, container_paths)
-  system2("docker", args = docker_args, stdout = TRUE, stderr = TRUE, wait = TRUE)
+  docker_args <- c(
+    "run",
+    "--rm",
+    "--platform",
+    "linux/amd64",
+    "-v",
+    paste0(workdir, ":", container_dir),
+    "-w",
+    container_dir,
+    image_name,
+    binary_name,
+    container_paths
+  )
+  system2(
+    "docker",
+    args = docker_args,
+    stdout = TRUE,
+    stderr = TRUE,
+    wait = TRUE
+  )
 }
 
 #' Run SAINTexpress on prepared input
@@ -47,6 +72,30 @@
 #'   `TRUE` to force Docker, or `FALSE` to require a native binary.
 #' @return List with elements `listFile` (data frame with the path),
 #'   `list` (the parsed `list.txt`), and `out` (data frame with the run log).
+#' @examples
+#' si <- list(
+#'   inter = data.frame(
+#'     ipId = c("IP1", "IP1", "IP2", "IP2", "IP3", "IP4"),
+#'     baitId = c("BaitA", "BaitA", "BaitA", "BaitA", "Ctrl", "Ctrl"),
+#'     preyId = c("Prey1", "Prey2", "Prey1", "Prey2", "Prey1", "Prey2"),
+#'     quant = c(20, 1, 18, 1, 1, 1)
+#'   ),
+#'   prey = data.frame(
+#'     preyId = c("Prey1", "Prey2"),
+#'     preyLength = c(500, 500),
+#'     preyGeneId = c("Gene1", "Gene2")
+#'   ),
+#'   bait = data.frame(
+#'     ipId = c("IP1", "IP2", "IP3", "IP4"),
+#'     baitId = c("BaitA", "BaitA", "Ctrl", "Ctrl"),
+#'     CorT = c("T", "T", "C", "C")
+#'   )
+#' )
+#' if (nzchar(saintexpress_executable("spc"))) {
+#'   workdir <- tempfile("saintexpressbin-")
+#'   dir.create(workdir)
+#'   saintexpress_run(si, type = "spc", workdir = workdir, use_docker = FALSE)
+#' }
 #' @export
 saintexpress_run <- function(si,
                              type = c("spc", "int"),
@@ -71,12 +120,15 @@ saintexpress_run <- function(si,
   } else if (nzchar(native_exe)) {
     out <- .run_native(native_exe, paths, workdir, sysname)
   } else {
-    stop("No native ", binary_name, " for ", sysname,
-         ". Set use_docker = TRUE where Docker is supported, or install a platform binary.")
+    stop(
+      "No native ", binary_name, " for ", sysname, ". ",
+      "Set use_docker = TRUE where Docker is supported, ",
+      "or install a platform binary."
+    )
   }
   listFile <- file.path(workdir, "list.txt")
 
-  message(cat(out, sep = "\n"))
+  message(paste(out, collapse = "\n"))
   Sys.sleep(2)
   res <- utils::read.csv(file = listFile, sep = "\t")
   if (cleanup) {

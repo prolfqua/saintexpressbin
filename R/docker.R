@@ -1,18 +1,40 @@
-ensure_saintexpress_docker_image <- function(image_name = "saintexpress:latest") {
+ensure_saintexpress_docker_image <- function(
+  image_name = "saintexpress:latest"
+) {
   docker_path <- Sys.which("docker")
   if (!nzchar(docker_path)) {
     stop(
       "Docker is not installed or not in PATH. ",
-      "Install Docker Desktop from https://www.docker.com/products/docker-desktop/"
+      "Install Docker Desktop from ",
+      "https://www.docker.com/products/docker-desktop/"
     )
   }
-  check <- system2("docker", args = c("image", "inspect", image_name),
-                   stdout = FALSE, stderr = FALSE)
+  check <- system2(
+    "docker",
+    args = c("image", "inspect", image_name),
+    stdout = FALSE,
+    stderr = FALSE
+  )
   if (check == 0) {
     message("Docker image '", image_name, "' found.")
     return(invisible(TRUE))
   }
+
   message("Building Docker image '", image_name, "' (one-time setup)...")
+  build_dir <- .prepare_saintexpress_docker_build_dir()
+  result <- .build_saintexpress_docker_image(image_name, build_dir)
+  status <- attr(result, "status")
+  if (!is.null(status) && status != 0) {
+    stop(
+      "Failed to build Docker image. Is Docker Desktop running?\n",
+      paste(result, collapse = "\n")
+    )
+  }
+  message("Docker image '", image_name, "' built successfully.")
+  invisible(TRUE)
+}
+
+.prepare_saintexpress_docker_build_dir <- function() {
   build_dir <- file.path(tempdir(), "saintexpressbin_build")
   dir.create(build_dir, showWarnings = FALSE, recursive = TRUE)
   dockerfile_path <- .saintexpressbin_file("docker", "Dockerfile")
@@ -23,15 +45,21 @@ ensure_saintexpress_docker_image <- function(image_name = "saintexpress:latest")
   file.copy(dockerfile_path, build_dir, overwrite = TRUE)
   file.copy(file.path(bin_dir, "SAINTexpress-spc"), build_dir, overwrite = TRUE)
   file.copy(file.path(bin_dir, "SAINTexpress-int"), build_dir, overwrite = TRUE)
-  result <- system2("docker",
-                    args = c("build", "--platform", "linux/amd64",
-                             "-t", image_name, build_dir),
-                    stdout = TRUE, stderr = TRUE)
-  status <- attr(result, "status")
-  if (!is.null(status) && status != 0) {
-    stop("Failed to build Docker image. Is Docker Desktop running?\n",
-         paste(result, collapse = "\n"))
-  }
-  message("Docker image '", image_name, "' built successfully.")
-  invisible(TRUE)
+  build_dir
+}
+
+.build_saintexpress_docker_image <- function(image_name, build_dir) {
+  system2(
+    "docker",
+    args = c(
+      "build",
+      "--platform",
+      "linux/amd64",
+      "-t",
+      image_name,
+      build_dir
+    ),
+    stdout = TRUE,
+    stderr = TRUE
+  )
 }

@@ -45,6 +45,9 @@
 #' @param type Either `"spc"` (spectral counts) or `"int"` (intensities).
 #' @return Absolute path to the executable for the current platform, or `""` if
 #'   no shipped binary matches.
+#' @examples
+#' path <- saintexpress_executable("spc")
+#' is.character(path)
 #' @export
 saintexpress_executable <- function(type = c("spc", "int")) {
   type <- match.arg(type)
@@ -57,6 +60,10 @@ saintexpress_executable <- function(type = c("spc", "int")) {
 #' Docker is available on macOS (the Docker image is built on first use).
 #'
 #' @param type Either `"spc"` or `"int"`.
+#' @return `TRUE` if SAINTexpress can run for `type` on this machine, otherwise
+#'   `FALSE`.
+#' @examples
+#' saintexpress_available("spc")
 #' @export
 saintexpress_available <- function(type = c("spc", "int")) {
   type <- match.arg(type)

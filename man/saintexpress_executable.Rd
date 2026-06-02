@@ -16,3 +16,7 @@ no shipped binary matches.
 \description{
 Path to a shipped SAINTexpress executable
 }
+\examples{
+path <- saintexpress_executable("spc")
+is.character(path)
+}

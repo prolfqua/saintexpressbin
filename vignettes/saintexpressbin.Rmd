@@ -21,19 +21,17 @@ compare the native scores to the pure-R implementation directly.
 ## Check binary availability
 
 ```{r available}
-library(saintexpressbin)
-saintexpress_executable("spc")
-saintexpress_executable("int")
-saintexpress_available("spc")
+saintexpressbin::saintexpress_executable("spc")
+saintexpressbin::saintexpress_executable("int")
+saintexpressbin::saintexpress_available("spc")
 ```
 
 The chunks below skip execution unless a native binary is resolvable for the
 current platform.
 
 ```{r eval-flag, include = FALSE}
-have_binary <- nzchar(saintexpress_executable("spc")) &&
-               nzchar(saintexpress_executable("int"))
-knitr::opts_chunk$set(eval = have_binary)
+have_binary <- nzchar(saintexpressbin::saintexpress_executable("spc")) &&
+  nzchar(saintexpressbin::saintexpress_executable("int"))
 ```
 
 ## Simulate a small AP-MS experiment
@@ -85,19 +83,23 @@ simulate_si <- function(seed = 42, mode = c("spc", "int")) {
 
 ## Spectral-count scoring with the native binary
 
-```{r score-spc}
+```{r score-spc, eval = have_binary}
 si_spc <- simulate_si(mode = "spc")
 workdir <- tempfile("saintexpressbin-spc-")
 dir.create(workdir)
-res_spc <- saintexpress_run(si_spc, type = "spc",
-                            workdir = workdir, cleanup = TRUE,
-                            use_docker = FALSE)
+res_spc <- saintexpressbin::saintexpress_run(
+  si_spc,
+  type = "spc",
+  workdir = workdir,
+  cleanup = TRUE,
+  use_docker = FALSE
+)
 res_spc$list[, c("Bait", "Prey", "AvgP", "BFDR", "SaintScore")]
 ```
 
 Top hits per bait — the true interactors should rank first by `AvgP`:
 
-```{r top-hits-spc}
+```{r top-hits-spc, eval = have_binary}
 top_per_bait <- function(df) {
   df <- df[order(df$Bait, -df$AvgP), ]
   do.call(rbind, by(df, df$Bait, head, 2))
@@ -105,16 +107,62 @@ top_per_bait <- function(df) {
 top_per_bait(res_spc$list)[, c("Bait", "Prey", "AvgP", "BFDR")]
 ```
 
+## Spectral-count volcano plot
+
+The native result includes `FoldChange` and `BFDR`. We plot the effect-size
+coordinate (`EFC`, here `log2(FoldChange)`) against the false-discovery
+coordinate.
+
+```{r volcano-helper, eval = TRUE}
+plot_volcano <- function(scores, title) {
+  volcano_data <- scores
+  volcano_data$EFC <- log2(volcano_data$FoldChange)
+  volcano_data$neg_log10_bfdr <- -log10(pmax(volcano_data$BFDR, 1e-16))
+  volcano_data$is_hit <- volcano_data$BFDR <= 0.05 & volcano_data$EFC >= 1
+
+  plot(
+    volcano_data$EFC,
+    volcano_data$neg_log10_bfdr,
+    pch = 19,
+    col = ifelse(volcano_data$is_hit, "#B23A48", "#3D6F99"),
+    xlab = "EFC (log2 fold change)",
+    ylab = "-log10(BFDR)",
+    main = title
+  )
+  abline(h = -log10(0.05), lty = 2, col = "grey40")
+  abline(v = 1, lty = 2, col = "grey40")
+  text(
+    volcano_data$EFC,
+    volcano_data$neg_log10_bfdr,
+    labels = paste(volcano_data$Bait, volcano_data$Prey, sep = ":"),
+    pos = 3,
+    cex = 0.7
+  )
+}
+```
+
+```{r volcano-spc, eval = have_binary, fig.width = 6, fig.height = 4}
+plot_volcano(res_spc$list, "Native SAINTexpress spectral-count volcano plot")
+```
+
 ## Intensity scoring with the native binary
 
-```{r score-int}
+```{r score-int, eval = have_binary}
 si_int <- simulate_si(mode = "int")
 workdir <- tempfile("saintexpressbin-int-")
 dir.create(workdir)
-res_int <- saintexpress_run(si_int, type = "int",
-                            workdir = workdir, cleanup = TRUE,
-                            use_docker = FALSE)
+res_int <- saintexpressbin::saintexpress_run(
+  si_int,
+  type = "int",
+  workdir = workdir,
+  cleanup = TRUE,
+  use_docker = FALSE
+)
 top_per_bait(res_int$list)[, c("Bait", "Prey", "AvgP", "BFDR")]
+```
+
+```{r volcano-int, eval = have_binary, fig.width = 6, fig.height = 4}
+plot_volcano(res_int$list, "Native SAINTexpress intensity volcano plot")
 ```
 
 ## See also
@@ -122,3 +170,9 @@ top_per_bait(res_int$list)[, c("Bait", "Prey", "AvgP", "BFDR")]
 For the pure-R implementation of the same scoring, see
 [`saintexpress`](https://github.com/prolfqua/saintexpress). The two engines are
 compared side by side on the TIP49 reference dataset in `prolfquasaint`.
+
+## Session information
+
+```{r session-info}
+sessionInfo()
+```
