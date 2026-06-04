@@ -33,32 +33,27 @@ simulate_si <- function(seed = 42, mode = c("spc", "int")) {
   ips    <- paste0("IP", seq_along(baits))
   cort   <- c("T", "T", "T", "T", "C", "C")
 
-  draw <- function(bait, prey) {
-    if (bait %in% c("Ctrl1", "Ctrl2")) {
-      if (mode == "spc") stats::rpois(1, 0.5) else stats::rexp(1, 1 / 1e4)
-    } else if (bait == "BaitA" && prey %in% c("Prey1", "Prey2")) {
-      if (mode == "spc") stats::rpois(1, 20) else stats::rexp(1, 1 / 1e7)
-    } else if (bait == "BaitB" && prey %in% c("Prey3", "Prey4")) {
-      if (mode == "spc") stats::rpois(1, 15) else stats::rexp(1, 1 / 5e6)
-    } else {
-      if (mode == "spc") stats::rpois(1, 0.5) else stats::rexp(1, 1 / 1e4)
-    }
+  # One row per IP x prey; recover the bait for each IP.
+  grid <- expand.grid(ipId = ips, preyId = preys, stringsAsFactors = FALSE)
+  grid$baitId <- baits[match(grid$ipId, ips)]
+
+  # A prey is enriched ("signal") only for its true bait; everything else is background.
+  signal <- (grid$baitId == "BaitA" & grid$preyId %in% c("Prey1", "Prey2")) |
+            (grid$baitId == "BaitB" & grid$preyId %in% c("Prey3", "Prey4"))
+
+  # Draw every quantity in one vectorized call.
+  if (mode == "spc") {
+    lambda <- ifelse(signal, ifelse(grid$baitId == "BaitA", 20, 15), 0.5)
+    grid$quant <- stats::rpois(nrow(grid), lambda)
+  } else {
+    mu <- ifelse(signal, ifelse(grid$baitId == "BaitA", 1e7, 5e6), 1e4)
+    grid$quant <- stats::rexp(nrow(grid), 1 / mu)
   }
 
-  rows <- list()
-  for (i in seq_along(baits)) {
-    for (p in preys) {
-      q <- draw(baits[i], p)
-      if (q > 0) {
-        rows[[length(rows) + 1]] <- data.frame(
-          ipId = ips[i], baitId = baits[i], preyId = p, quant = q,
-          stringsAsFactors = FALSE
-        )
-      }
-    }
-  }
+  inter <- grid[grid$quant > 0, c("ipId", "baitId", "preyId", "quant")]
+  rownames(inter) <- NULL
   list(
-    inter = do.call(rbind, rows),
+    inter = inter,
     prey  = data.frame(preyId = preys, preyLength = 500L, preyGeneId = preys,
                        stringsAsFactors = FALSE),
     bait  = data.frame(ipId = ips, baitId = baits, CorT = cort,
@@ -80,28 +75,27 @@ res_spc <- saintexpressbin::saintexpress_run(
   cleanup = TRUE,
   use_docker = FALSE
 )
-#> Input files are: /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/inter.txt, /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/prey.txt, /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/bait.txt
-#> Interaction file: "/tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/inter.txt"
-#> Prey file: "/tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/prey.txt"
-#> Bait file: "/tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/bait.txt"
+#> Input files are: /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt, /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt, /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt
+#> Interaction file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt"
+#> Prey file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt"
+#> Bait file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt"
 #> GO file: ""
-#> Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/prey.txt ...done.
-#> Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/bait.txt ...done.
-#> Parsing interaction file /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/inter.txt ...done.
+#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt ...done.
+#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt ...done.
+#> Parsing interaction file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt ...done.
 #> Setting matrix indices for each interaction...done.
 #> Creating matrix...done.
 #> Creating a list of unique interactions...done.
 res_spc$list[, c("Bait", "Prey", "AvgP", "BFDR", "SaintScore")]
 #>    Bait  Prey AvgP BFDR SaintScore
 #> 1 BaitA Prey1 1.00 0.00       1.00
-#> 2 BaitA Prey2 1.00 0.00       1.00
-#> 3 BaitA Prey4 0.00 0.26       0.00
-#> 4 BaitA Prey6 0.05 0.12       0.05
-#> 5 BaitA Prey5 0.38 0.00       0.38
-#> 6 BaitB Prey3 1.00 0.00       1.00
-#> 7 BaitB Prey4 1.00 0.00       1.00
-#> 8 BaitB Prey2 0.00 0.26       0.00
-#> 9 BaitB Prey6 0.00 0.26       0.00
+#> 2 BaitB Prey1 0.00 0.16       0.00
+#> 3 BaitA Prey2 1.00 0.00       1.00
+#> 4 BaitB Prey3 1.00 0.00       1.00
+#> 5 BaitA Prey4 0.00 0.16       0.00
+#> 6 BaitB Prey4 1.00 0.00       1.00
+#> 7 BaitA Prey5 0.00 0.16       0.00
+#> 8 BaitB Prey6 0.22 0.00       0.22
 ```
 
 Top hits per bait — the true interactors should rank first by `AvgP`:
@@ -114,9 +108,9 @@ top_per_bait <- function(df) {
 top_per_bait(res_spc$list)[, c("Bait", "Prey", "AvgP", "BFDR")]
 #>          Bait  Prey AvgP BFDR
 #> BaitA.1 BaitA Prey1    1    0
-#> BaitA.2 BaitA Prey2    1    0
-#> BaitB.6 BaitB Prey3    1    0
-#> BaitB.7 BaitB Prey4    1    0
+#> BaitA.3 BaitA Prey2    1    0
+#> BaitB.4 BaitB Prey3    1    0
+#> BaitB.6 BaitB Prey4    1    0
 ```
 
 ## Spectral-count volcano plot
@@ -172,24 +166,24 @@ res_int <- saintexpressbin::saintexpress_run(
   cleanup = TRUE,
   use_docker = FALSE
 )
-#> Input files are: /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/inter.txt, /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/prey.txt, /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/bait.txt
-#> Interaction file: "/tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/inter.txt"
-#> Prey file: "/tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/prey.txt"
-#> Bait file: "/tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/bait.txt"
+#> Input files are: /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt, /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt, /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt
+#> Interaction file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt"
+#> Prey file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt"
+#> Bait file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt"
 #> GO file: ""
-#> Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/prey.txt ...done.
-#> Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/bait.txt ...done.
-#> Parsing interaction file /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/inter.txt ...done.
+#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt ...done.
+#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt ...done.
+#> Parsing interaction file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt ...done.
 #> Setting matrix indices for each interaction...done.
 #> Creating matrix...done.
 #> Creating a list of unique interactions...done.
 #> L is larger than the number of control IPs.
 top_per_bait(res_int$list)[, c("Bait", "Prey", "AvgP", "BFDR")]
-#>           Bait  Prey AvgP BFDR
-#> BaitA.1  BaitA Prey1    1    0
-#> BaitA.2  BaitA Prey2    1    0
-#> BaitB.9  BaitB Prey3    1    0
-#> BaitB.10 BaitB Prey4    1    0
+#>          Bait  Prey AvgP BFDR
+#> BaitA.1 BaitA Prey1    1    0
+#> BaitA.3 BaitA Prey2    1    0
+#> BaitB.6 BaitB Prey3    1    0
+#> BaitB.8 BaitB Prey4    1    0
 ```
 
 ``` r

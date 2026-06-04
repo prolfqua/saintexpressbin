@@ -91,32 +91,27 @@ for the current platform.</p>
 <span>  <span class="va">ips</span>    <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"IP"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">baits</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">cort</span>   <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"C"</span>, <span class="st">"C"</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">draw</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">bait</span>, <span class="va">prey</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">bait</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ctrl1"</span>, <span class="st">"Ctrl2"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="va">mode</span> <span class="op">==</span> <span class="st">"spc"</span><span class="op">)</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span> <span class="kw">else</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">1e4</span><span class="op">)</span></span>
-<span>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">bait</span> <span class="op">==</span> <span class="st">"BaitA"</span> <span class="op">&amp;&amp;</span> <span class="va">prey</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Prey1"</span>, <span class="st">"Prey2"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="va">mode</span> <span class="op">==</span> <span class="st">"spc"</span><span class="op">)</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">20</span><span class="op">)</span> <span class="kw">else</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">1e7</span><span class="op">)</span></span>
-<span>    <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">bait</span> <span class="op">==</span> <span class="st">"BaitB"</span> <span class="op">&amp;&amp;</span> <span class="va">prey</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Prey3"</span>, <span class="st">"Prey4"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="va">mode</span> <span class="op">==</span> <span class="st">"spc"</span><span class="op">)</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span><span class="op">)</span> <span class="kw">else</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">5e6</span><span class="op">)</span></span>
-<span>    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="va">mode</span> <span class="op">==</span> <span class="st">"spc"</span><span class="op">)</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span> <span class="kw">else</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span> <span class="op">/</span> <span class="fl">1e4</span><span class="op">)</span></span>
-<span>    <span class="op">}</span></span>
+<span>  <span class="co"># One row per IP x prey; recover the bait for each IP.</span></span>
+<span>  <span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>ipId <span class="op">=</span> <span class="va">ips</span>, preyId <span class="op">=</span> <span class="va">preys</span>, stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span>  <span class="va">grid</span><span class="op">$</span><span class="va">baitId</span> <span class="op">&lt;-</span> <span class="va">baits</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">ipId</span>, <span class="va">ips</span><span class="op">)</span><span class="op">]</span></span>
+<span></span>
+<span>  <span class="co"># A prey is enriched ("signal") only for its true bait; everything else is background.</span></span>
+<span>  <span class="va">signal</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">baitId</span> <span class="op">==</span> <span class="st">"BaitA"</span> <span class="op">&amp;</span> <span class="va">grid</span><span class="op">$</span><span class="va">preyId</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Prey1"</span>, <span class="st">"Prey2"</span><span class="op">)</span><span class="op">)</span> <span class="op">|</span></span>
+<span>            <span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">baitId</span> <span class="op">==</span> <span class="st">"BaitB"</span> <span class="op">&amp;</span> <span class="va">grid</span><span class="op">$</span><span class="va">preyId</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Prey3"</span>, <span class="st">"Prey4"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># Draw every quantity in one vectorized call.</span></span>
+<span>  <span class="kw">if</span> <span class="op">(</span><span class="va">mode</span> <span class="op">==</span> <span class="st">"spc"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">lambda</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">signal</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">baitId</span> <span class="op">==</span> <span class="st">"BaitA"</span>, <span class="fl">20</span>, <span class="fl">15</span><span class="op">)</span>, <span class="fl">0.5</span><span class="op">)</span></span>
+<span>    <span class="va">grid</span><span class="op">$</span><span class="va">quant</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>, <span class="va">lambda</span><span class="op">)</span></span>
+<span>  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>    <span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">signal</span>, <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">baitId</span> <span class="op">==</span> <span class="st">"BaitA"</span>, <span class="fl">1e7</span>, <span class="fl">5e6</span><span class="op">)</span>, <span class="fl">1e4</span><span class="op">)</span></span>
+<span>    <span class="va">grid</span><span class="op">$</span><span class="va">quant</span> <span class="op">&lt;-</span> <span class="fu">stats</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/stats/Exponential.html" class="external-link">rexp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>, <span class="fl">1</span> <span class="op">/</span> <span class="va">mu</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span></span>
-<span>  <span class="va">rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">baits</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">preys</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="va">q</span> <span class="op">&lt;-</span> <span class="fu">draw</span><span class="op">(</span><span class="va">baits</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">p</span><span class="op">)</span></span>
-<span>      <span class="kw">if</span> <span class="op">(</span><span class="va">q</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span>        <span class="va">rows</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">rows</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span>          ipId <span class="op">=</span> <span class="va">ips</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, baitId <span class="op">=</span> <span class="va">baits</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, preyId <span class="op">=</span> <span class="va">p</span>, quant <span class="op">=</span> <span class="va">q</span>,</span>
-<span>          stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span>        <span class="op">)</span></span>
-<span>      <span class="op">}</span></span>
-<span>    <span class="op">}</span></span>
-<span>  <span class="op">}</span></span>
+<span>  <span class="va">inter</span> <span class="op">&lt;-</span> <span class="va">grid</span><span class="op">[</span><span class="va">grid</span><span class="op">$</span><span class="va">quant</span> <span class="op">&gt;</span> <span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ipId"</span>, <span class="st">"baitId"</span>, <span class="st">"preyId"</span>, <span class="st">"quant"</span><span class="op">)</span><span class="op">]</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">inter</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>    inter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">rbind</span>, <span class="va">rows</span><span class="op">)</span>,</span>
+<span>    inter <span class="op">=</span> <span class="va">inter</span>,</span>
 <span>    prey  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>preyId <span class="op">=</span> <span class="va">preys</span>, preyLength <span class="op">=</span> <span class="fl">500L</span>, preyGeneId <span class="op">=</span> <span class="va">preys</span>,</span>
 <span>                       stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span>    bait  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>ipId <span class="op">=</span> <span class="va">ips</span>, baitId <span class="op">=</span> <span class="va">baits</span>, CorT <span class="op">=</span> <span class="va">cort</span>,</span>
@@ -138,28 +133,27 @@ for the current platform.</p>
 <span>  cleanup <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  use_docker <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Input files are: /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/inter.txt, /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/prey.txt, /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/bait.txt</span></span>
-<span><span class="co">#&gt; Interaction file: "/tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/inter.txt"</span></span>
-<span><span class="co">#&gt; Prey file: "/tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/prey.txt"</span></span>
-<span><span class="co">#&gt; Bait file: "/tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/bait.txt"</span></span>
+<span><span class="co">#&gt; Input files are: /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt, /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt, /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt</span></span>
+<span><span class="co">#&gt; Interaction file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt"</span></span>
+<span><span class="co">#&gt; Prey file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt"</span></span>
+<span><span class="co">#&gt; Bait file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt"</span></span>
 <span><span class="co">#&gt; GO file: ""</span></span>
-<span><span class="co">#&gt; Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/prey.txt ...done.</span></span>
-<span><span class="co">#&gt; Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/bait.txt ...done.</span></span>
-<span><span class="co">#&gt; Parsing interaction file /tmp/RtmpKcCcjh/saintexpressbin-spc-1d8158e1046e/inter.txt ...done.</span></span>
+<span><span class="co">#&gt; Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt ...done.</span></span>
+<span><span class="co">#&gt; Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt ...done.</span></span>
+<span><span class="co">#&gt; Parsing interaction file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt ...done.</span></span>
 <span><span class="co">#&gt; Setting matrix indices for each interaction...done.</span></span>
 <span><span class="co">#&gt; Creating matrix...done.</span></span>
 <span><span class="co">#&gt; Creating a list of unique interactions...done.</span></span>
 <span><span class="va">res_spc</span><span class="op">$</span><span class="va">list</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bait"</span>, <span class="st">"Prey"</span>, <span class="st">"AvgP"</span>, <span class="st">"BFDR"</span>, <span class="st">"SaintScore"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;    Bait  Prey AvgP BFDR SaintScore</span></span>
 <span><span class="co">#&gt; 1 BaitA Prey1 1.00 0.00       1.00</span></span>
-<span><span class="co">#&gt; 2 BaitA Prey2 1.00 0.00       1.00</span></span>
-<span><span class="co">#&gt; 3 BaitA Prey4 0.00 0.26       0.00</span></span>
-<span><span class="co">#&gt; 4 BaitA Prey6 0.05 0.12       0.05</span></span>
-<span><span class="co">#&gt; 5 BaitA Prey5 0.38 0.00       0.38</span></span>
-<span><span class="co">#&gt; 6 BaitB Prey3 1.00 0.00       1.00</span></span>
-<span><span class="co">#&gt; 7 BaitB Prey4 1.00 0.00       1.00</span></span>
-<span><span class="co">#&gt; 8 BaitB Prey2 0.00 0.26       0.00</span></span>
-<span><span class="co">#&gt; 9 BaitB Prey6 0.00 0.26       0.00</span></span></code></pre></div>
+<span><span class="co">#&gt; 2 BaitB Prey1 0.00 0.16       0.00</span></span>
+<span><span class="co">#&gt; 3 BaitA Prey2 1.00 0.00       1.00</span></span>
+<span><span class="co">#&gt; 4 BaitB Prey3 1.00 0.00       1.00</span></span>
+<span><span class="co">#&gt; 5 BaitA Prey4 0.00 0.16       0.00</span></span>
+<span><span class="co">#&gt; 6 BaitB Prey4 1.00 0.00       1.00</span></span>
+<span><span class="co">#&gt; 7 BaitA Prey5 0.00 0.16       0.00</span></span>
+<span><span class="co">#&gt; 8 BaitB Prey6 0.22 0.00       0.22</span></span></code></pre></div>
 <p>Top hits per bait — the true interactors should rank first by
 <code>AvgP</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -170,9 +164,9 @@ for the current platform.</p>
 <span><span class="fu">top_per_bait</span><span class="op">(</span><span class="va">res_spc</span><span class="op">$</span><span class="va">list</span><span class="op">)</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bait"</span>, <span class="st">"Prey"</span>, <span class="st">"AvgP"</span>, <span class="st">"BFDR"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="co">#&gt;          Bait  Prey AvgP BFDR</span></span>
 <span><span class="co">#&gt; BaitA.1 BaitA Prey1    1    0</span></span>
-<span><span class="co">#&gt; BaitA.2 BaitA Prey2    1    0</span></span>
-<span><span class="co">#&gt; BaitB.6 BaitB Prey3    1    0</span></span>
-<span><span class="co">#&gt; BaitB.7 BaitB Prey4    1    0</span></span></code></pre></div>
+<span><span class="co">#&gt; BaitA.3 BaitA Prey2    1    0</span></span>
+<span><span class="co">#&gt; BaitB.4 BaitB Prey3    1    0</span></span>
+<span><span class="co">#&gt; BaitB.6 BaitB Prey4    1    0</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="spectral-count-volcano-plot">Spectral-count volcano plot<a class="anchor" aria-label="anchor" href="#spectral-count-volcano-plot"></a>
@@ -225,24 +219,24 @@ coordinate.</p>
 <span>  cleanup <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  use_docker <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; Input files are: /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/inter.txt, /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/prey.txt, /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/bait.txt</span></span>
-<span><span class="co">#&gt; Interaction file: "/tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/inter.txt"</span></span>
-<span><span class="co">#&gt; Prey file: "/tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/prey.txt"</span></span>
-<span><span class="co">#&gt; Bait file: "/tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/bait.txt"</span></span>
+<span><span class="co">#&gt; Input files are: /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt, /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt, /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt</span></span>
+<span><span class="co">#&gt; Interaction file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt"</span></span>
+<span><span class="co">#&gt; Prey file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt"</span></span>
+<span><span class="co">#&gt; Bait file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt"</span></span>
 <span><span class="co">#&gt; GO file: ""</span></span>
-<span><span class="co">#&gt; Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/prey.txt ...done.</span></span>
-<span><span class="co">#&gt; Parsing prey file /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/bait.txt ...done.</span></span>
-<span><span class="co">#&gt; Parsing interaction file /tmp/RtmpKcCcjh/saintexpressbin-int-1d813e22afa4/inter.txt ...done.</span></span>
+<span><span class="co">#&gt; Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt ...done.</span></span>
+<span><span class="co">#&gt; Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt ...done.</span></span>
+<span><span class="co">#&gt; Parsing interaction file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt ...done.</span></span>
 <span><span class="co">#&gt; Setting matrix indices for each interaction...done.</span></span>
 <span><span class="co">#&gt; Creating matrix...done.</span></span>
 <span><span class="co">#&gt; Creating a list of unique interactions...done.</span></span>
 <span><span class="co">#&gt; L is larger than the number of control IPs.</span></span>
 <span><span class="fu">top_per_bait</span><span class="op">(</span><span class="va">res_int</span><span class="op">$</span><span class="va">list</span><span class="op">)</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Bait"</span>, <span class="st">"Prey"</span>, <span class="st">"AvgP"</span>, <span class="st">"BFDR"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="co">#&gt;           Bait  Prey AvgP BFDR</span></span>
-<span><span class="co">#&gt; BaitA.1  BaitA Prey1    1    0</span></span>
-<span><span class="co">#&gt; BaitA.2  BaitA Prey2    1    0</span></span>
-<span><span class="co">#&gt; BaitB.9  BaitB Prey3    1    0</span></span>
-<span><span class="co">#&gt; BaitB.10 BaitB Prey4    1    0</span></span></code></pre></div>
+<span><span class="co">#&gt;          Bait  Prey AvgP BFDR</span></span>
+<span><span class="co">#&gt; BaitA.1 BaitA Prey1    1    0</span></span>
+<span><span class="co">#&gt; BaitA.3 BaitA Prey2    1    0</span></span>
+<span><span class="co">#&gt; BaitB.6 BaitB Prey3    1    0</span></span>
+<span><span class="co">#&gt; BaitB.8 BaitB Prey4    1    0</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_volcano</span><span class="op">(</span><span class="va">res_int</span><span class="op">$</span><span class="va">list</span>, <span class="st">"Native SAINTexpress intensity volcano plot"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="saintexpressbin_files/figure-html/volcano-int-1.png" class="r-plt" alt="" width="576"></p>
