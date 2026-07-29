@@ -75,14 +75,14 @@ res_spc <- saintexpressbin::saintexpress_run(
   cleanup = TRUE,
   use_docker = FALSE
 )
-#> Input files are: /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt, /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt, /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt
-#> Interaction file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt"
-#> Prey file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt"
-#> Bait file: "/tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt"
+#> Input files are: /tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/inter.txt, /tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/prey.txt, /tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/bait.txt
+#> Interaction file: "/tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/inter.txt"
+#> Prey file: "/tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/prey.txt"
+#> Bait file: "/tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/bait.txt"
 #> GO file: ""
-#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/prey.txt ...done.
-#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/bait.txt ...done.
-#> Parsing interaction file /tmp/RtmpCvtjEv/saintexpressbin-spc-1dcb1a2a258d/inter.txt ...done.
+#> Parsing prey file /tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/prey.txt ...done.
+#> Parsing prey file /tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/bait.txt ...done.
+#> Parsing interaction file /tmp/Rtmp9EjOgD/saintexpressbin-spc-1d5663089e3c/inter.txt ...done.
 #> Setting matrix indices for each interaction...done.
 #> Creating matrix...done.
 #> Creating a list of unique interactions...done.
@@ -166,14 +166,14 @@ res_int <- saintexpressbin::saintexpress_run(
   cleanup = TRUE,
   use_docker = FALSE
 )
-#> Input files are: /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt, /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt, /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt
-#> Interaction file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt"
-#> Prey file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt"
-#> Bait file: "/tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt"
+#> Input files are: /tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/inter.txt, /tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/prey.txt, /tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/bait.txt
+#> Interaction file: "/tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/inter.txt"
+#> Prey file: "/tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/prey.txt"
+#> Bait file: "/tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/bait.txt"
 #> GO file: ""
-#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/prey.txt ...done.
-#> Parsing prey file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/bait.txt ...done.
-#> Parsing interaction file /tmp/RtmpCvtjEv/saintexpressbin-int-1dcb4da76b48/inter.txt ...done.
+#> Parsing prey file /tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/prey.txt ...done.
+#> Parsing prey file /tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/bait.txt ...done.
+#> Parsing interaction file /tmp/Rtmp9EjOgD/saintexpressbin-int-1d562c6b716f/inter.txt ...done.
 #> Setting matrix indices for each interaction...done.
 #> Creating matrix...done.
 #> Creating a list of unique interactions...done.
@@ -203,7 +203,7 @@ engines are compared side by side on the TIP49 reference dataset in
 
 ``` r
 sessionInfo()
-#> R version 4.6.0 (2026-04-24)
+#> R version 4.6.1 (2026-06-24)
 #> Platform: x86_64-pc-linux-gnu
 #> Running under: Ubuntu 24.04.4 LTS
 #> 
@@ -225,18 +225,18 @@ sessionInfo()
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] crayon_1.5.3          vctrs_0.7.3           cli_3.6.6            
-#>  [4] knitr_1.51            rlang_1.2.0           xfun_0.58            
+#>  [4] knitr_1.51            rlang_1.3.0           xfun_0.60            
 #>  [7] saintexpressbin_0.0.1 otel_0.2.0            textshaping_1.0.5    
 #> [10] jsonlite_2.0.0        bit_4.6.0             glue_1.8.1           
 #> [13] htmltools_0.5.9       ragg_1.5.2            sass_0.4.10          
 #> [16] hms_1.1.4             rmarkdown_2.31        tibble_3.3.1         
 #> [19] evaluate_1.0.5        jquerylib_0.1.4       tzdb_0.5.0           
 #> [22] fastmap_1.2.0         yaml_2.3.12           lifecycle_1.0.5      
-#> [25] compiler_4.6.0        fs_2.1.0              pkgconfig_2.0.3      
+#> [25] compiler_4.6.1        fs_2.1.0              pkgconfig_2.0.3      
 #> [28] htmlwidgets_1.6.4     systemfonts_1.3.2     digest_0.6.39        
 #> [31] R6_2.6.1              tidyselect_1.2.1      readr_2.2.0          
-#> [34] parallel_4.6.0        vroom_1.7.1           pillar_1.11.1        
+#> [34] parallel_4.6.1        vroom_1.7.1           pillar_1.11.1        
 #> [37] magrittr_2.0.5        bslib_0.11.0          bit64_4.8.2          
-#> [40] tools_4.6.0           pkgdown_2.2.0         cachem_1.1.0         
+#> [40] tools_4.6.1           pkgdown_2.2.1         cachem_1.1.0         
 #> [43] desc_1.4.3
 ```
