@@ -4,12 +4,7 @@
 }
 
 .platform_subdir <- function(sysname) {
-  switch(sysname,
-    Darwin = "Darwin",
-    Linux = "Linux64",
-    Windows = "Windows64",
-    NA_character_
-  )
+  switch(sysname, Darwin = "Darwin", Linux = "Linux64", Windows = "Windows64", NA_character_)
 }
 
 .saintexpressbin_file <- function(...) {

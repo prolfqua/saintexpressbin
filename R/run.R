@@ -97,11 +97,7 @@
 #'   saintexpress_run(si, type = "spc", workdir = workdir, use_docker = FALSE)
 #' }
 #' @export
-saintexpress_run <- function(si,
-                             type = c("spc", "int"),
-                             workdir = getwd(),
-                             cleanup = TRUE,
-                             use_docker = NULL) {
+saintexpress_run <- function(si, type = c("spc", "int"), workdir = getwd(), cleanup = TRUE, use_docker = NULL) {
   type <- match.arg(type)
   stopifnot(is.list(si), identical(names(si), c("inter", "prey", "bait")))
   workdir <- normalizePath(workdir, mustWork = TRUE)
@@ -121,7 +117,11 @@ saintexpress_run <- function(si,
     out <- .run_native(native_exe, paths, workdir, sysname)
   } else {
     stop(
-      "No native ", binary_name, " for ", sysname, ". ",
+      "No native ",
+      binary_name,
+      " for ",
+      sysname,
+      ". ",
       "Set use_docker = TRUE where Docker is supported, ",
       "or install a platform binary."
     )

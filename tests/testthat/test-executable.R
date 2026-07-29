@@ -12,8 +12,12 @@ test_that("platform subdir maps known sysnames", {
 })
 
 test_that("executable resolves for at least one shipped platform", {
-  hits <- vapply(c("Darwin", "Linux", "Windows"), function(s) {
-    nzchar(saintexpressbin:::.saintexpress_executable("spc", sysname = s))
-  }, logical(1))
+  hits <- vapply(
+    c("Darwin", "Linux", "Windows"),
+    function(s) {
+      nzchar(saintexpressbin:::.saintexpress_executable("spc", sysname = s))
+    },
+    logical(1)
+  )
   expect_true(any(hits))
 })
