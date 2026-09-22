@@ -1,13 +1,19 @@
 Package: saintexpressbin
 Title: SAINTexpress Native Binaries and Runner
 Version: 0.0.1
-Authors@R: 
+Authors@R: c(
     person("Witold", "Wolski", , "wew@fgcz.ethz.ch",
         role = c("aut", "cre"),
-        comment = c(ORCID = "0000-0002-6468-120X"))
+        comment = c(ORCID = "0000-0002-6468-120X")),
+    person("Hyungwon", "Choi", , "hyung_won_choi@nuhs.edu.sg",
+        role = c("aut", "cph"),
+        comment = "Author and copyright holder of the bundled SAINTexpress executables"),
+    person("Damian", "Fermin", ,
+        role = c("aut", "cph"),
+        comment = "Author and copyright holder of the bundled SAINTexpress executables"))
 Description: Ships SAINTexpress native executables and runs them (or a
     Docker image on macOS) on prepared SAINT input data.
-License: MIT + file LICENSE
+License: GPL (>= 3)
 URL: https://prolfqua.github.io/saintexpressbin/, https://github.com/prolfqua/saintexpressbin
 BugReports: https://github.com/prolfqua/saintexpressbin/issues
 Encoding: UTF-8

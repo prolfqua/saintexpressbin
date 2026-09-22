@@ -1,0 +1,63 @@
+SAINTexpress native executables bundled in inst/bin/
+=====================================================
+
+This package redistributes compiled SAINTexpress executables
+(SAINTexpress-spc and SAINTexpress-int) for Linux, Windows and macOS.
+
+Copyright and licence
+---------------------
+
+  Copyright (C) 2011 Hyungwon Choi, Damian Fermin
+
+  SAINTexpress is free software: you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the Free
+  Software Foundation, either version 3 of the License, or (at your option)
+  any later version.
+
+  This program is distributed in the hope that it will be useful, but WITHOUT
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+  more details.
+
+  You can obtain a copy of the GNU General Public License from
+  <http://www.gnu.org/licenses/>.
+
+The notice above is reproduced from SAINT-MRF-spc/main.cpp and
+SAINT-MRF-int/main.cpp of the upstream distribution.
+
+Corresponding source (GPL-3 section 6)
+--------------------------------------
+
+The complete corresponding source for the bundled executables is the upstream
+SAINTexpress distribution:
+
+  Archive : SAINTexpress_v3.6.3__2018-03-09.tar.gz
+  SHA-256 : 668dada2f3617bc9bb899314c097bd41a9de8f9bed78e934459cc125126b1482
+  Source  : https://sourceforge.net/projects/saint-apms/files/
+  Project : https://saint-apms.sourceforge.net/Main.html
+
+Provenance of the bundled executables (SHA-256)
+-----------------------------------------------
+
+The Linux and Windows executables are byte-for-byte identical to the
+precompiled binaries in the upstream archive's Precompiled_binaries/ directory:
+
+  Linux64/SAINTexpress-spc       03b0d5c929bf9634c29fba2d25f13a89c9a7531a3d78e31c7066d4f78fe349a0
+  Linux64/SAINTexpress-int       30c41368319ff8470305d4b321382296f7a0e498b4515016c0434caed1a44ad0
+  Windows64/SAINTexpress-spc.exe bff7530721c983d3a14123dc8b5d38b697026485f6e9a3da8d9fed27d9953b2b
+  Windows64/SAINTexpress-int.exe c823b4a970efb06bf1ff2698eb567286e4120aa9ac4205e9f6c55d3b7b55b5d0
+
+The upstream archive contains no macOS binaries. The executables in
+inst/bin/Darwin/ were compiled locally by the maintainer from the same upstream
+archive and are covered by the same GPL-3-or-later terms.
+
+For as long as this package is distributed, the maintainer will supply a copy
+of that corresponding source on request, at no charge beyond the cost of
+transfer. Contact the address in the Maintainer field of DESCRIPTION.
+
+R code in this package
+----------------------
+
+The R sources in R/, the tests and the vignettes are Copyright (C) 2026
+Witold Wolski and are distributed under the same GPL (>= 3) terms as the
+package as a whole.
