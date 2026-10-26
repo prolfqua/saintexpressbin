@@ -133,11 +133,27 @@ structure of the companion
 the native and pure-R engines can be compared side by side. Native-run
 chunks are skipped automatically when no platform binary is resolvable.
 
-## License Note
+## Licence
 
-Before public redistribution, verify that the shipped SAINTexpress
-binaries can be distributed under the intended hosting and package
-release terms.
+The bundled SAINTexpress executables are Copyright (C) 2011 Hyungwon
+Choi and Damian Fermin and are licensed under the GNU General Public
+License, version 3 or later. Redistributing them therefore obliges this
+package to the same terms, so `saintexpressbin` is released under GPL
+(\>= 3) as a whole; a permissive licence is not available for it.
+
+As required by GPL-3 section 6, the complete corresponding source for
+the bundled executables is the upstream archive
+`SAINTexpress_v3.6.3__2018-03-09.tar.gz` (SHA-256
+`668dada2f3617bc9bb899314c097bd41a9de8f9bed78e934459cc125126b1482`),
+available from <https://sourceforge.net/projects/saint-apms/files/>. The
+maintainer will also supply a copy on request.
+
+The Linux and Windows executables are byte-for-byte identical to the
+precompiled binaries in that archive. The archive ships no macOS
+binaries; the executables in `inst/bin/Darwin/` were compiled locally
+from the same upstream sources and carry the same GPL-3-or-later terms.
+
+See `inst/COPYRIGHTS` for the full notice.
 
 ## References
 

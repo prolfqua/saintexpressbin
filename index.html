@@ -141,9 +141,12 @@
 <p>It runs <code>SAINTexpress-spc</code> and <code>SAINTexpress-int</code> on a 6-prey/4-bait synthetic experiment with known true interactors, and mirrors the structure of the companion <a href="https://github.com/prolfqua/saintexpress" class="external-link"><code>saintexpress</code></a> vignette so the native and pure-R engines can be compared side by side. Native-run chunks are skipped automatically when no platform binary is resolvable.</p>
 </div>
 <div class="section level2">
-<h2 id="license-note">License Note<a class="anchor" aria-label="anchor" href="#license-note"></a>
+<h2 id="licence">Licence<a class="anchor" aria-label="anchor" href="#licence"></a>
 </h2>
-<p>Before public redistribution, verify that the shipped SAINTexpress binaries can be distributed under the intended hosting and package release terms.</p>
+<p>The bundled SAINTexpress executables are Copyright (C) 2011 Hyungwon Choi and Damian Fermin and are licensed under the GNU General Public License, version 3 or later. Redistributing them therefore obliges this package to the same terms, so <code>saintexpressbin</code> is released under GPL (&gt;= 3) as a whole; a permissive licence is not available for it.</p>
+<p>As required by GPL-3 section 6, the complete corresponding source for the bundled executables is the upstream archive <code>SAINTexpress_v3.6.3__2018-03-09.tar.gz</code> (SHA-256 <code>668dada2f3617bc9bb899314c097bd41a9de8f9bed78e934459cc125126b1482</code>), available from <a href="https://sourceforge.net/projects/saint-apms/files/" class="external-link uri">https://sourceforge.net/projects/saint-apms/files/</a>. The maintainer will also supply a copy on request.</p>
+<p>The Linux and Windows executables are byte-for-byte identical to the precompiled binaries in that archive. The archive ships no macOS binaries; the executables in <code>inst/bin/Darwin/</code> were compiled locally from the same upstream sources and carry the same GPL-3-or-later terms.</p>
+<p>See <code>inst/COPYRIGHTS</code> for the full notice.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -170,8 +173,7 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li>GPL (&gt;= 3)</li>
 </ul>
 </div>
 
@@ -187,6 +189,9 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Witold Wolski <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-6468-120X" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Hyungwon Choi <br><small class="roles"> Author, copyright holder </small>   </li>
+<li>Damian Fermin <br><small class="roles"> Author, copyright holder </small>   </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -197,7 +202,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Witold Wolski.</p>
+  <p>Developed by Witold Wolski, Hyungwon Choi, Damian Fermin.</p>
 </div>
 
 <div class="pkgdown-footer-right">
